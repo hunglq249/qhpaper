@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAAA;;;;;;;;EAQE;AERF,OAAO,CAAC,8FAAI;ADcZ,AAAA,KAAK,CAAA;EACD,SAAS,CAAA,6CAAC;EACb,WAAW,CAAA,2CAAC;EAEZ,gBAAgB,CAAA,sDAAC;EACd,cAAc,CAAA,qCAAC;CAClB;;ACSD,AAAA,IAAI;AACJ,IAAI,CAAA;EACA,WAAW,EAAE,qBAAqB;EAClC,SAAS,EAAE,mBAAmB;EAE9B,KAAK,EAAE,qBAAqB;CAC/B",
+    "sources": [
+        "../scss/style.scss",
+        "../scss/setup/_var.scss",
+        "../scss/setup/_type.scss",
+        "../plugins/zayeki/scss/setup/_mixin.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}

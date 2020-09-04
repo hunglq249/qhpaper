@@ -1,0 +1,223 @@
+.popup {
+    width: 100%;
+    height: 100%;
+
+    padding: 1rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1040;
+
+    display: none;
+
+    @include translate(-50%, -50%);
+
+    &:focus {
+        outline: none;
+    }
+
+    &.show {
+        &.fade {
+            .popup-dialog {
+                .popup-content {
+                    opacity: 1;
+
+                    @include transition(300ms);
+                }
+            }
+        }
+
+        .popup-dialog {
+            .popup-content {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.popup-full{
+        position: fixed;
+
+        .popup-dialog{
+            .popup-content{
+                height: 100%;
+            }
+        }
+    }
+
+    .popup-dialog {
+        width: 100%;
+        height: 100%;
+
+        position: relative;
+        z-index: 1;
+
+        @include d-flex(column, center, center);
+
+        &.popup-dialog-top {
+            justify-content: flex-start;
+        }
+
+        &.popup-dialog-bottom{
+            justify-content: flex-end;
+        }
+
+        &.popup-dialog-left {
+            align-items: flex-start;
+        }
+
+        &.popup-dialog-right {
+            align-items: flex-end;
+        }
+
+        &.popup-dialog-75 {
+            .popup-content {
+                width: 75%;
+            }
+        }
+
+        &.popup-dialog-50 {
+            .popup-content {
+                width: 50%;
+            }
+        }
+
+        &.popup-dialog-scroll{
+            @include overflow-y();
+
+            .popup-content{
+                overflow: visible;
+
+                .popup-body{
+                    overflow: visible;
+                }
+            }
+        }
+
+        .popup-content {
+            width: 100%;
+            max-height: 100%;
+
+            background-color: var(--bg-bw);
+
+            @include boxShadowDf();
+
+            opacity: 0;
+
+            overflow: hidden;
+
+            @include borderRadius();
+            @include d-flex(column, normal, normal);
+
+            @include transition(300ms);
+
+            > div {
+                &:first-child{
+                    @include borderRadiusCustom(top, left);
+                    @include borderRadiusCustom(top, right);
+                }
+
+                &:last-child{
+                    @include borderRadiusCustom(bottom, left);
+                    @include borderRadiusCustom(bottom, right);
+                }
+            }
+
+            .popup-header {
+                padding: 0 1rem;
+
+                @include d-flex(row, space-between, center);
+
+                flex-shrink: 1;
+
+                .container{
+                    height: 100%;
+
+                    @include d-flex(row, space-between, center);
+                }
+            }
+
+            .popup-body {
+                padding: 0 1rem 1rem;
+
+                background-color: var(--gray-1);
+
+                flex: 1 1 auto;
+
+                @include overflow-y();
+
+                .container{
+                    height: 100%;
+                }
+
+                .popup-loading{
+                    width: 100%;
+                    height: 100%;
+
+                    background-color: transparentize($color-black, 0.5);
+
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+
+                    display: none;
+
+                    &.show{
+                        @include d-flex(row, center, center);
+                    }
+
+                    img{
+                        width: 64px;
+                    }
+                }
+            }
+
+            .popup-footer {
+                height: 48px;
+
+                padding: 0.5rem 1rem;
+
+                flex-shrink: 1;
+
+                @include d-flex(row, flex-end, center);
+
+                .btn {
+                    min-width: 120px;
+
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
+}
+
+.popup-backdrop {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: transparentize($color-black, 0.5);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $zindex-popup-backdrop;
+
+    opacity: 0;
+
+    @include transition(300ms);
+
+    &.show {
+        opacity: 1;
+    }
+
+    &.fade {
+        opacity: 1;
+
+        @include transition(300ms);
+    }
+
+    &.focus {
+        backdrop-filter: blur(0.25rem);
+    }
+}

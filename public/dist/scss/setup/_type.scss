@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap');
+
+// @font-face{
+// 	font-family: 'Inter';
+// 	font-style: normal;
+// 	font-weight: 400;
+// 	font-display: swap;
+// 	src: url('/dist/fonts/Inter-Regular.woff2') format("woff2"),
+// 		 url('/dist/fonts/Inter-Regular.woff') format("woff");
+// }
+
+// @font-face{
+// 	font-family: 'Inter';
+// 	font-style: normal;
+// 	font-weight: 600;
+// 	font-display: swap;
+// 	src: url('/dist/fonts/Inter-SemiBold.woff2') format("woff2"),
+// 		 url('/dist/fonts/Inter-SemeBold.woff') format("woff");
+// }
+
+// @font-face{
+// 	font-family: 'Inter';
+// 	font-style: normal;
+// 	font-weight: 700;
+// 	font-display: swap;
+// 	src: url('/dist/fonts/Inter-Bold.woff2') format("woff2"),
+// 		 url('/dist/fonts/Inter-Bold.woff') format("woff");
+// }
+
+html,
+body{
+    font-family: var(--webfont-family);
+    font-size: var(--webfont-size);
+
+    color: var(--text-paragraph);
+}

@@ -1,0 +1,47 @@
+@import '../content';
+
+.view-home{
+	height: calc(100vh - 60px);
+
+	.swiper-container{
+		width: 100%;
+		height: 100%;
+
+		.swiper-wrapper{
+			height: 100%;
+
+			.swiper-slide{
+				height: 100%;
+
+				position: relative;
+
+				.mask{
+					width: 100%;
+					height: 100%;
+				}
+
+				.text-overlay{
+					width: 100%;
+					height: 100%;
+
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 1;
+
+					@include d-flex(column, center, center);
+
+					h1,
+					h5{
+						color: var(--white);
+
+						@include textShadowDf();
+					}
+					h5{
+						margin-bottom: 1rem;
+					}
+				}
+			}
+		}
+	}
+}

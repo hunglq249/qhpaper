@@ -1,0 +1,21 @@
+//COLORS
+$color-primary:                                     #91c083;
+$color-secondary:                                   #7faeda;
+
+$color-black:                                       #000;
+$color-gray:                                        #666;
+
+// FONTS
+$font-base-family:                                  'Playfair Display', serif;
+$font-base-size:                                    16px;
+
+// BORDER RADIUS
+$border-radius:                                     0.5rem;
+
+:root{
+    --primary:                                      #{$color-primary};
+	--secondary:                                    #{$color-secondary};
+
+	--webfont-family:                               #{$font-base-family};
+    --webfont-size:                                 #{$font-base-size};
+}

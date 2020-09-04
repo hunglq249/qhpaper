@@ -1,0 +1,284 @@
+.list-items{
+    // COMMON ITEM ROW
+    $grid-list-index: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+
+    .item-row {
+        @include d-flex(row, normal, stretch);
+        flex-wrap: wrap;
+
+        [class^="item-col"] {
+            width: auto;
+
+            flex: 1 0 auto;
+
+            > * {
+                &:not(.item-row) {
+                    min-height: 1.125rem;
+                    
+                    padding: 0.75rem;
+                }
+            }
+
+            .item-row {
+                margin: -1px;
+            }
+        }
+
+        @each $value in $grid-list-index {
+            @if($value !=0) {
+                .item-col-#{$value} {
+                    width: calc(100% / 12 * #{$value});
+                    flex: 0 0 auto;
+
+                    @include d-flex(column, center, normal);
+                }
+            }
+
+            .item-col-#{$value}-half {
+                width: calc(100% / 12 * (#{$value} + 0.5));
+                flex: 0 0 auto;
+
+                @include d-flex(column, center, normal);
+            }
+        }
+    }
+
+    // LIST TABLE
+    &.list-table{
+        &.list-table-bordered{
+            .item-row {
+                [class^="item-col"] {
+                    border: 1px solid var(--border);
+                }
+            }
+            
+            .list-items-header {
+                border-bottom: 1px solid var(--border);
+
+                .item-row{
+                    .item-before-actions {
+                        border-right-color: transparent;
+                    }
+                    
+                    .item-actions {
+                        border-left-color: transparent;
+                    }
+                }
+            }
+
+            .list-items-body {
+                .item-row {
+                    border-bottom: none;
+
+                    &:hover{
+                        box-shadow: none;
+                    }
+
+                    .item-before-actions {
+                        border-right-color: transparent;
+                    }
+
+                    .item-actions{
+                        border-left-color: transparent;
+                    }
+                }
+            }
+        }
+
+        &.list-table-borderless{
+            .list-items-header {
+                border-bottom: none;
+            }
+
+            .list-items-body {
+                .item-row {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        .list-items-header{
+            border-bottom: 2px solid var(--border);
+        }
+
+        .list-items-body {
+            > .item-row{
+                border-bottom: 1px solid var(--border);
+                @include transition();
+
+                &:hover{
+                    @include boxShadowDf();
+                    @include transition();
+                }
+
+                &:last-of-type{
+                    border-bottom: none;
+                }
+            }
+        }
+
+        .item-row{
+            &:hover{
+                .item-actions {
+                    .btn-group {
+                        opacity: 1;
+
+                        @include transition();
+                    }
+                }
+            }
+
+            .item-actions {
+                text-align: right;
+
+                position: relative;
+
+                @include positionSticky(right);
+
+                .btn-group {
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    z-index: 1;
+
+                    opacity: 0;
+
+                    @include translate(0, -50%);
+                    @include transition();
+                }
+            }
+        }
+    }
+
+    // LIST TREE
+    &.list-tree{
+        .list-items-body{
+            > .item-row{
+                background-color: var(--bg-bw);
+
+                @include positionSticky();
+            }
+
+            .item-row{
+                .item-wrapper-control{
+                    i{
+                        @include transition();
+
+                        &.rotated{
+                            @include rotate(90deg);
+                            @include transition();
+                        }
+                    }
+                }
+
+                .item-actions{
+                    .form-check-group{
+                        justify-content: flex-end;
+                    }
+                }
+
+                .item-wrapper{
+                    width: 100%;
+
+                    display: none;
+                }
+            }
+
+            @for $i from 1 to 10 {
+                .item-wrapper-#{$i} {
+                    .item-row {
+                        .item-wrapper-control {
+                            padding-left: calc(#{$i} * 0.75rem);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // LIST SWITCH
+    &.list-switch{
+        .list-items-control{
+            margin-bottom: 0.75rem;
+
+            @include d-flex(row, flex-end, center);
+
+            .btn{
+                margin-left: 0.5rem;
+            }
+        }
+
+        &[data-view="grid"]{
+            .list-items-header{
+                display: none;
+            }
+
+            .list-items-body{
+                @include d-flex(row, normal, normal);
+                flex-wrap: wrap;
+
+                .item-row{
+                    margin-bottom: $grid-gutter;
+
+                    .item-index{
+                        display: none;
+                    }
+
+                    .item-cover{
+                        .mask{
+                            width: 100%;
+                            min-height: 230px;
+
+                            padding: 0;
+                        }
+
+                        p {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        &[data-view="list"]{
+            .list-items-body{
+                .item-row{
+                    .item-cover{
+                        .mask{
+                            display: none;
+                        }
+
+                        p{
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.list-table-responsive {
+    width: 100%;
+}
+
+@each $keyBreakpoint,
+$valueBreakpoint in $grid-breakpoints {
+    @each $keyMaxWidth,
+    $valueMaxWidth in $container-max-widths {
+        @if($keyBreakpoint==$keyMaxWidth) {
+            @media screen and (max-width: #{$valueBreakpoint}) {
+                .list-table-responsive {
+                    @include overflow-x();
+                    //@include overflow-y();
+
+                    .list-items {
+                        &.list-table {
+                            min-width: $valueMaxWidth;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

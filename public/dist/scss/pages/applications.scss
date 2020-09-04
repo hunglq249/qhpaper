@@ -1,0 +1,102 @@
+@import '../content';
+
+.view-application{
+	min-height: calc(100vh - 60px);
+
+	.application-filter{
+		height: 100px;
+
+		padding-bottom: 2rem;
+
+		background-color: var(--bg-bw);
+
+		@include d-flex(row, center, flex-end);
+
+		@include positionSticky(top, 60px, 1029);
+
+		a{
+			&.btn-filter-application{
+				margin: 0 0.5rem;
+
+				position: relative;
+
+				display: block;
+
+				&.active{
+					padding: 0.25rem 0.75rem;
+
+					background-color: var(--primary);
+
+					@include borderRadius();
+					@include translate(0, 0.25rem);
+
+					h6{
+						color: var(--white);
+					}
+				}
+			}
+		}
+	}
+
+	.application-content{
+		column-count: 3;
+		column-gap: 1.5rem;
+		orphans: 1;
+		widows: 1;
+
+		.card{
+			margin-bottom: 1.5rem;
+
+			display: inline-block;
+
+			a{
+				width: 100%;
+
+				display: block;
+
+				position: relative;
+
+				&:hover{
+					.overlay{
+						opacity: 1;
+
+						@include transition();
+					}
+				}
+
+				img{
+					width: 100%;
+	
+					display: block;
+	
+					@include borderRadius();
+				}
+
+				.overlay{
+					width: 100%;
+					height: 100%;
+
+					padding: 1.5rem;
+
+					@include gradientLinearBackground(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.5) 100%);
+					@include borderRadius();
+
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					z-index: 1;
+
+					opacity: 0;
+
+					@include d-flex(column, flex-end, normal);
+
+					@include transition();
+
+					h6{
+						color: var(--white);
+					}
+				}
+			}
+		}
+	}
+}

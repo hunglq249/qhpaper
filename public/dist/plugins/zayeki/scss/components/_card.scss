@@ -1,0 +1,64 @@
+.card{
+    width: 100%;
+
+    background-color: var(--bg-bw);
+
+    @include borderRadius();
+    @include boxShadowDf();
+
+    &.card-no-shadow{
+        box-shadow: none;
+    }
+
+    &.card-row{
+        @include d-flex(row, normal, stretch);
+    }
+
+    .mask{
+        width: 100%;
+
+        @include borderRadiusCustom(top, left);
+        @include borderRadiusCustom(top, right);
+    }
+
+    .card-body{
+        padding: 0.75rem;
+    }
+
+    .card-actions{
+        @include d-flex(row, space-between, stretch);
+
+        &:last-child{
+            border-top: 1px solid var(--border);
+
+            .btn{
+                &:first-child {
+                    @include borderRadiusCustom(bottom, left);
+                }
+
+                &:last-child {
+                    @include borderRadiusCustom(bottom, right);
+                }
+            }
+        }
+        
+        .btn{
+            max-width: 100%;
+            flex-grow: 1;
+
+            @include borderRadius(0);
+
+            &:not(:first-child) {
+                margin-left: -1px;
+            }
+        }
+
+        a {
+            @include d-flex(row, center, center);
+
+            i{
+                margin-right: 0.25rem;
+            }
+        }
+    }
+}
